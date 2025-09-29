@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #0d1117; /* Dark background */
+  color: #e6edf3;
+  scroll-behavior: smooth;
+}
