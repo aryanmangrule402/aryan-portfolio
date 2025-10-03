@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import {
   ThemeProvider,
   createTheme,
@@ -22,8 +22,10 @@ import {
   Avatar
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { motion } from "framer-motion";
 import emailjs from 'emailjs-com';
+import Loader from "./components/Loader";
 
 // Dark theme
 const darkTheme = createTheme({
@@ -55,7 +57,14 @@ export default function App() {
 
   const fadeInUp = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } };
   const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
+const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2500); // Loader duration
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   // EmailJS send function
   const sendEmail = (e) => {
     e.preventDefault();
