@@ -7,3 +7,10 @@ html, body, #root {
   color: #e6edf3;
   scroll-behavior: smooth;
 }
+.MuiIconButton-root {
+  transition: all 0.3s ease-in-out;
+}
+.MuiIconButton-root:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 15px #90caf9;
+}

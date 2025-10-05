@@ -22,10 +22,16 @@ import {
   Avatar
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import { motion } from "framer-motion";
 import emailjs from 'emailjs-com';
 import Loader from "./components/Loader";
+import GitHubIcon from "@mui/icons-material/GitHub";
+
+
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmailIcon from "@mui/icons-material/Email";
 
 // Dark theme
 const darkTheme = createTheme({
@@ -46,11 +52,24 @@ const darkTheme = createTheme({
 });
 
 const projects = [
-  { title: "Generative Art Playground", desc: "Interactive NFT-based art platform" },
-  { title: "Cafe Ordering Kiosk", desc: "On-premise digital ordering system" },
-  { title: "Resource Allocation Research", desc: "Optimization with AI & ML" },
+  {
+    title: "Generative Art Playground",
+    desc: "Interactive NFT-based art platform",
+    link: "https://github.com/aryanmangrule/generative-art-playground",
+  },
+  {
+    title: "Chat-App using MERN",
+    desc: "Real-time chat application using WebSocket and MERN stack",
+    link: "https://github.com/aryanmangrule/chat-app-mern",
+  },
+  {
+    title: "Resource Allocation and Hardness Detection",
+    desc: "Optimization with Machine Learning",
+    link: "https://github.com/aryanmangrule/resource-allocation-ml",
+  },
 ];
-const skills = ["Java", "Spring Boot", "React.js", "Node.js", "SQL", "Docker", "GitHub", "AWS"];
+
+const skills = [ "React.js", "Node.js", "SQL", "C","C++","Python","Java","PostgreSql","MongoDB","Docker", "GitHub", "AWS"];
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -68,7 +87,7 @@ const [loading, setLoading] = useState(true);
   // EmailJS send function
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+    emailjs.sendForm("service_g0zgb8m", "template_qv0m06z", e.target, "4jy7PWcvztOeKMbzs")
       .then((result) => {
           alert("Message sent successfully!");
       }, (error) => {
@@ -91,10 +110,12 @@ const [loading, setLoading] = useState(true);
           "&::-webkit-scrollbar-track": { background: "#0d1117" },
           "&::-webkit-scrollbar-thumb": { background: "#90caf9", borderRadius: "4px" },
         }}
-      >
+      >    
+
+ 
 
         {/* Navbar */}
-        <AppBar position="sticky" color="transparent" elevation={0} sx={{ zIndex: 2 }}>
+        <AppBar position="fixed" color="transparent" elevation={0} sx={{ zIndex: 2 }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <motion.div initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
               <Typography variant="h6" sx={{ fontWeight: "bold", color: "primary.main" }}>
@@ -120,6 +141,92 @@ const [loading, setLoading] = useState(true);
             </Box>
           </Toolbar>
         </AppBar>
+{/* 🔗 Floating Social Sidebar */}
+<Box
+  sx={{
+    position: "fixed",
+    top: "50%",
+    left: 20,
+    transform: "translateY(-50%)",
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+    zIndex: 1000,
+  }}
+>
+  <motion.div
+    initial={{ x: -100, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ delay: 0.5 }}
+  >
+    <IconButton
+      href="https://github.com/aryanmangrule402"
+      target="_blank"
+      sx={{
+        color: "white",
+        backgroundColor: "rgba(255,255,255,0.1)",
+        "&:hover": { backgroundColor: "#90caf9", color: "#0d1117" },
+      }}
+    >
+      <GitHubIcon />
+    </IconButton>
+  </motion.div>
+
+  <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.6 }}>
+    <IconButton
+      href="https://www.linkedin.com/in/aryan-mangrule/"
+      target="_blank"
+      sx={{
+        color: "white",
+        backgroundColor: "rgba(255,255,255,0.1)",
+        "&:hover": { backgroundColor: "#90caf9", color: "#0d1117" },
+      }}
+    >
+      <LinkedInIcon />
+    </IconButton>
+  </motion.div>
+
+  <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.7 }}>
+    <IconButton
+      href="https://instagram.com/aryanmangrule"
+      target="_blank"
+      sx={{
+        color: "white",
+        backgroundColor: "rgba(255,255,255,0.1)",
+        "&:hover": { backgroundColor: "#90caf9", color: "#0d1117" },
+      }}
+    >
+      <InstagramIcon />
+    </IconButton>
+  </motion.div>
+
+  <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.8 }}>
+    <IconButton
+      href="https://twitter.com/aryanmangrule"
+      target="_blank"
+      sx={{
+        color: "white",
+        backgroundColor: "rgba(255,255,255,0.1)",
+        "&:hover": { backgroundColor: "#90caf9", color: "#0d1117" },
+      }}
+    >
+      <TwitterIcon />
+    </IconButton>
+  </motion.div>
+
+  <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.9 }}>
+    <IconButton
+      href="mailto:aryanmangrule@gmail.com"
+      sx={{
+        color: "white",
+        backgroundColor: "rgba(255,255,255,0.1)",
+        "&:hover": { backgroundColor: "#90caf9", color: "#0d1117" },
+      }}
+    >
+      <EmailIcon />
+    </IconButton>
+  </motion.div>
+</Box>
 
         {/* Drawer */}
         <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
@@ -238,30 +345,144 @@ const [loading, setLoading] = useState(true);
             </motion.div>
           </motion.div>
         </Container>
+{/* ================= Education Section ================= */}
+<Container sx={{ py: 10, textAlign: "center" }}>
+  <Typography variant="h3" gutterBottom>🎓 Education</Typography>
+
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "stretch",
+      flexWrap: "wrap",
+      gap: 4,
+      mt: 5,
+    }}
+  >
+    {[
+      {
+        degree: "B.Tech in Computer Science and Engineering",
+        college: "Kolhapur Institute of Technology",
+        year: "2021 - 2025",
+        score: "CGPA: 8.0 / 10",
+      },
+      {
+        degree: "Higher Secondary (HSC)",
+        college: "Shahu Dayanand Highschool",
+        year: "2020 - 2021",
+        score: "92.33%",
+      },
+      {
+        degree: "Secondary School (SSC)",
+        college: "Mahaveer English School",
+        year: "2018 - 2019",
+        score: "89%",
+      },
+    ].map((edu, i) => (
+      <motion.div
+        key={i}
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: i * 0.2, duration: 0.6 }}
+      >
+        <Card
+          sx={{
+            width: 300,
+            borderRadius: 2,
+            border: "1px solid rgba(255,255,255,0.2)",
+            backgroundColor: "rgba(255,255,255,0.05)",
+            backdropFilter: "blur(6px)",
+            color: "white",
+            textAlign: "center",
+            p: 3,
+            transition: "transform 0.3s ease",
+            "&:hover": { transform: "translateY(-6px)" },
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+            {edu.degree}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 1, color: "rgba(255,255,255,0.7)" }}>
+            {edu.college}
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 1, color: "rgba(255,255,255,0.6)" }}>
+            {edu.year}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>
+            {edu.score}
+          </Typography>
+        </Card>
+      </motion.div>
+    ))}
+  </Box>
+</Container>
 
         {/* Projects Section */}
-        <Container sx={{ py: 10, position: "relative", zIndex: 1 }}>
-          <Typography variant="h3" align="center" gutterBottom>🚀 Projects</Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {projects.map((p, i) => (
-              <Grid item xs={12} sm={6} md={4} key={i}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: i * 0.2 }}
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 25px #90caf9" }}
-                >
-                  <Card sx={{ bgcolor: "background.paper" }}>
-                    <CardContent>
-                      <Typography variant="h5" color="primary">{p.title}</Typography>
-                      <Typography variant="body1" color="text.secondary">{p.desc}</Typography>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+ {/* Projects Section */}
+<Container sx={{ py: 10, textAlign: "center", position: "relative", zIndex: 1 }}>
+  <Typography variant="h3" gutterBottom>🚀 Projects</Typography>
+
+  <Box
+    sx={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: 3,
+      mt: 4,
+    }}
+  >
+    {projects.map((p, i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ delay: i * 0.1 }}
+      >
+        <Card
+          sx={{
+            width: 320,
+            background: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(10px)",
+            borderRadius: 3,
+            boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+            color: "white",
+          }}
+        >
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              {p.title}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              {p.desc}
+            </Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<GitHubIcon />}
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                borderRadius: "20px",
+                textTransform: "none",
+                fontWeight: "bold",
+                transition: "all 0.3s",
+                "&:hover": {
+                  backgroundColor: "#90caf9",
+                  color: "#0d1117",
+                },
+              }}
+            >
+              View on GitHub
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.div>
+    ))}
+  </Box>
+</Container>
+
 
        {/* Skills Section */}
 <Container sx={{ py: 10, textAlign: "center", position: "relative", zIndex: 1 }}>
@@ -306,10 +527,37 @@ const [loading, setLoading] = useState(true);
               onSubmit={sendEmail}
               sx={{ maxWidth: 500, mx: "auto", display: "flex", flexDirection: "column", gap: 2 }}
             >
-              <TextField label="Your Name" name="user_name" variant="outlined" fullWidth required />
-              <TextField label="Your Email" name="user_email" variant="outlined" fullWidth required />
-              <TextField label="Message" name="message" variant="outlined" fullWidth multiline rows={4} required />
-              <Button type="submit" variant="contained" color="secondary">Send</Button>
+           
+  <TextField
+    type="text"
+    label="Your Name"
+    name="name"
+    variant="outlined"
+    fullWidth
+    required
+  />
+  <TextField
+    type="email"
+    label="Your Email"
+    name="email"
+    variant="outlined"
+    fullWidth
+    required
+  />
+  <TextField
+    label="Message"
+    name="message"
+    variant="outlined"
+    fullWidth
+    multiline
+    rows={4}
+    required
+  />
+  <Button type="submit" variant="contained" color="secondary">
+    Send
+  </Button>
+
+
             </Box>
           </motion.div>
         </Container>
@@ -318,7 +566,7 @@ const [loading, setLoading] = useState(true);
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
           <Box sx={{ py: 3, textAlign: "center", borderTop: "1px solid #30363d", position: "relative", zIndex: 1 }}>
             <Typography variant="body1" color="text.secondary">
-              © {new Date().getFullYear()} Aryan Mangrule | Built with React + MUI + Framer Motion
+              © {new Date().getFullYear()} Aryan Mangrule | Web Developer
             </Typography>
           </Box>
         </motion.div>
