@@ -18,7 +18,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemButton,
   ListItemText,
   Avatar
 } from "@mui/material";
@@ -159,7 +158,7 @@ const [loading, setLoading] = useState(true);
   sx={{
     position: "fixed",
     top: "50%",
-    left: 5,
+    left: 20,
     transform: "translateY(-50%)",
     display: "flex",
     flexDirection: "column",
@@ -242,18 +241,17 @@ const [loading, setLoading] = useState(true);
 </Box>
 
         {/* Drawer */}
-      <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-  <Box sx={{ width: 200, p: 2 }} role="presentation">
-    <List>
-      {["Education","Projects", "Skills", "Contact"].map((text) => (
-        <ListItemButton key={text} onClick={() => setDrawerOpen(false)}>
-          <ListItemText primary={text} />
-        </ListItemButton>
-      ))}
-    </List>
-  </Box>
-</Drawer>
-
+        <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+          <Box sx={{ width: 200, p: 2 }} role="presentation">
+            <List>
+              {["Projects", "Skills", "Contact"].map((text) => (
+                <ListItem button key={text} onClick={() => setDrawerOpen(false)}>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
 
         {/* Hero Section */}
         <Container
@@ -360,7 +358,7 @@ const [loading, setLoading] = useState(true);
           </motion.div>
         </Container>
 {/* ================= Education Section ================= */}
-<Container id="education" sx={{ py: 10, textAlign: "center" }}>
+<Container id="Education" sx={{ py: 10, textAlign: "center" }}>
   <Typography variant="h3" gutterBottom>🎓 Education</Typography>
 
   <Box
