@@ -280,7 +280,7 @@ export default function Portfolio() {
                     <div className="relative bg-gradient-to-br from-gray-900 to-black p-8 rounded-3xl border-2 border-cyan-500/50">
                       {/* Photo Placeholder - Replace with your actual photo */}
                       <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center overflow-hidden border-2 border-cyan-500/30 relative group-hover:border-cyan-500/60 transition-all duration-300">
-                        <img src="public\ResumeProfile.png" alt="Aryan Sanjay Mangrule" className="w-full h-full object-cover" />
+                        <img src="/ResumeProfile.png" alt="Aryan Sanjay Mangrule" className="w-full h-full object-cover" />
                         <div className="text-center">
                 
                         </div>
