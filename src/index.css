@@ -1,16 +1,2 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
-
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  background: #0d1117; /* Dark background */
-  color: #e6edf3;
-  scroll-behavior: smooth;
-}
-.MuiIconButton-root {
-  transition: all 0.3s ease-in-out;
-}
-.MuiIconButton-root:hover {
-  transform: translateX(5px);
-  box-shadow: 0 0 15px #90caf9;
-}
+@import "tailwindcss";
