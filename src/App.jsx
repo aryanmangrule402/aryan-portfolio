@@ -7,8 +7,37 @@ export default function Portfolio() {
   const [particles, setParticles] = useState([]);
   const [ripples, setRipples] = useState([]);
   const [scrollY, setScrollY] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const cursorRef = useRef(null);
 
+
+
+  
+useEffect(() => {
+  // Simulate loading progress
+  const progressInterval = setInterval(() => {
+    setLoadingProgress(prev => {
+      if (prev >= 100) {
+        clearInterval(progressInterval);
+        return 100;
+      }
+      return prev + 2;
+    });
+  }, 30);
+
+  // Hide loading screen after animation completes
+  const loadingTimer = setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
+
+  return () => {
+    clearInterval(progressInterval);
+    clearTimeout(loadingTimer);
+  };
+}, []);
+
+  
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -74,65 +103,141 @@ export default function Portfolio() {
   }, []);
 
   const skills = [
-    { name: 'React', icon: '⚛️', level: 95, color: '#61DAFB' },
+    { name: 'React.js', icon: '⚛️', level: 90, color: '#61DAFB' },
     { name: 'JavaScript', icon: '🟨', level: 90, color: '#F7DF1E' },
-    { name: 'TypeScript', icon: '🔷', level: 85, color: '#3178C6' },
-    { name: 'Node.js', icon: '🟢', level: 88, color: '#339933' },
-    { name: 'Python', icon: '🐍', level: 82, color: '#3776AB' },
-    { name: 'CSS/Tailwind', icon: '🎨', level: 93, color: '#06B6D4' },
-    { name: 'Next.js', icon: '▲', level: 87, color: '#000000' },
-    { name: 'GraphQL', icon: '◆', level: 80, color: '#E10098' },
+    { name: 'Python', icon: '🐍', level: 85, color: '#3776AB' },
+    { name: 'C++', icon: '⚙️', level: 82, color: '#00599C' },
+    { name: 'Node.js', icon: '🟢', level: 85, color: '#339933' },
+    { name: 'MongoDB', icon: '🍃', level: 82, color: '#47A248' },
+    { name: 'FastAPI', icon: '⚡', level: 85, color: '#009688' },
+    { name: 'Flask', icon: '🧪', level: 80, color: '#000000' },
   ];
 
   const projects = [
     {
-      title: 'AI-Powered Dashboard',
-      description: 'Real-time analytics platform with ML predictions and interactive data visualization',
-      tech: ['React', 'TensorFlow.js', 'D3.js', 'Node.js'],
+      title: 'DocAssist - AI Medical Triage & Booking System',
+      description: 'Location-aware healthcare platform using Generative AI (LLMs) to parse patient symptoms into structured urgency classifications. Features "Just-in-Time" Provider Database with real-time geospatial searches and RBAC for secure workflows.',
+      tech: ['FastAPI', 'LLM', 'Serper.dev', 'Google Maps API'],
       gradient: 'from-cyan-500 to-blue-500'
     },
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack marketplace with payment integration, inventory management, and admin panel',
-      tech: ['Next.js', 'Stripe', 'MongoDB', 'Redis'],
+      title: 'Industry Operator Allocation & Hardness Detection',
+      description: 'Flask-based web application for operator management and automated task allocation. Integrated ML model for hardness detection ensuring product quality. Features balanced resource allocation and real-time analytics.',
+      tech: ['Flask', 'Python', 'Machine Learning', 'CSV Processing'],
       gradient: 'from-purple-500 to-pink-500'
     },
     {
-      title: 'Social Media Analytics',
-      description: 'Track engagement metrics across platforms with automated reporting and insights',
-      tech: ['Python', 'React', 'PostgreSQL', 'AWS'],
-      gradient: 'from-orange-500 to-red-500'
+      title: 'MERN Real-Time Chat Application',
+      description: 'Private chat platform with Socket.IO for instant bidirectional communication. Implemented JWT authentication, bcrypt encryption, and responsive dashboard with live user status and message notifications.',
+      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Socket.IO'],
+      gradient: 'from-green-500 to-teal-500'
     },
     {
-      title: 'Mobile Game Engine',
-      description: 'Cross-platform 2D game engine with physics simulation and asset management',
-      tech: ['C++', 'OpenGL', 'SDL2', 'Lua'],
-      gradient: 'from-green-500 to-teal-500'
+      title: 'Smart Triage System',
+      description: 'Algorithmic system where high-urgency cases trigger auto-confirmation logic, while routine cases route through provider approval queue, optimizing medical resource allocation with structured MongoDB data model.',
+      tech: ['React', 'FastAPI', 'MongoDB', 'REST API'],
+      gradient: 'from-orange-500 to-red-500'
     }
   ];
 
   const experience = [
-    {
-      role: 'Senior Full Stack Developer',
-      company: 'Tech Innovations Inc.',
-      period: '2022 - Present',
-      description: 'Led development of microservices architecture, improving system performance by 150%'
+     {
+      role: 'Frontend Intern (Internship)',
+      company: 'NIT Surathkal',
+      period: 'April 2025 - June 2025',
+      description: 'Learn Mern stack and build different industry ready projects .also contributed for some open source projects in NIT surathkal.'
     },
     {
-      role: 'Frontend Engineer',
-      company: 'Digital Solutions Co.',
-      period: '2020 - 2022',
-      description: 'Built responsive web applications used by 1M+ users, implementing modern design systems'
+      role: 'React Developer (Internship)',
+      company: 'Vinayak IT Solution',
+      period: 'Jan 2025 - Mar 2025',
+      description: 'Developed and maintained responsive web pages using React.js, JavaScript, HTML, and CSS. Enhanced user experience through interactive interfaces and gained practical experience across all phases of the software development lifecycle.'
     },
     {
-      role: 'Software Developer',
-      company: 'StartUp Labs',
-      period: '2018 - 2020',
-      description: 'Developed full-stack features for SaaS platform, collaborated with cross-functional teams'
+      role: 'Design Team Leader',
+      company: 'ACSES - Association of Computer Science & Engineering Students',
+      period: '2023 - 2024',
+      description: 'Led a team of 5+ designers to create event promotions. Organized 10+ events annually, ensuring on-time delivery and high-quality execution.'
+    },
+    {
+      role: 'B.Tech Computer Science and Engineering',
+      company: 'Kolhapur Institute of Technology',
+      period: '2021 - 2025',
+      description: 'Current GPA: 8.58/10. Coursework: Algorithms, Data Structures, Operating Systems, OOP, Database Systems, AR/VR, and Computer Networks. Active contributor in tech community events.'
     }
   ];
 
   return (
+    <>
+    {/* Loading Screen */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center animate-fadeOut"
+             style={{ animation: loadingProgress === 100 ? 'fadeOut 0.5s ease-out forwards' : 'none' }}>
+          <div className="text-center space-y-8">
+            {/* Animated Logo */}
+            <div className="relative">
+              {/* Outer rotating ring */}
+              <div className="w-32 h-32 mx-auto relative">
+                <div className="absolute inset-0 border-4 border-cyan-500/20 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-transparent border-t-cyan-500 rounded-full animate-spin"></div>
+                <div className="absolute inset-2 border-4 border-transparent border-t-blue-500 rounded-full animate-spin-reverse"></div>
+                
+                {/* Center Icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Terminal className="w-12 h-12 text-cyan-400 animate-pulse" />
+                </div>
+              </div>
+            </div>
+
+            {/* Loading Text */}
+            <div className="space-y-4">
+              <h1 className="text-4xl font-bold">
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                  Loading Portfolio
+                </span>
+              </h1>
+              
+              {/* Loading Bar */}
+              <div className="w-64 mx-auto">
+                <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-300 ease-out relative"
+                    style={{ width: `${loadingProgress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                  </div>
+                </div>
+                <p className="text-cyan-400 font-mono text-sm mt-2">{loadingProgress}%</p>
+              </div>
+
+              {/* Status Text */}
+              <p className="text-gray-400 font-mono text-sm animate-pulse">
+                {loadingProgress < 30 && "Initializing systems..."}
+                {loadingProgress >= 30 && loadingProgress < 60 && "Loading components..."}
+                {loadingProgress >= 60 && loadingProgress < 90 && "Preparing experience..."}
+                {loadingProgress >= 90 && "Almost ready..."}
+              </p>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="flex justify-center gap-2 mt-8">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"
+                  style={{ animationDelay: `${i * 0.15}s` }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          {/* Background effects */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl opacity-10 animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </div>
+        </div>
+      )}
     <div className="relative min-h-screen bg-black text-white overflow-hidden" style={{ cursor: 'none' }}>
       {/* Custom Cursor */}
       <div
@@ -275,18 +380,20 @@ export default function Portfolio() {
                   {/* Profile Container */}
                   <div className="relative">
                     {/* Outer Ring */}
-           
+             
+                    
                     {/* Main Photo Container */}
                     <div className="relative bg-gradient-to-br from-gray-900 to-black p-8 rounded-3xl border-2 border-cyan-500/50">
                       {/* Photo Placeholder - Replace with your actual photo */}
                       <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center overflow-hidden border-2 border-cyan-500/30 relative group-hover:border-cyan-500/60 transition-all duration-300">
-                        <img src="/ResumeProfile.png" alt="Aryan Sanjay Mangrule" className="w-full h-full object-cover" />
+                     <img src="/ResumeProfile.png" alt="Aryan Sanjay Mangrule" className="w-full h-full object-cover" />
                         <div className="text-center">
-                
+               
+                    
                         </div>
                         
                         {/* Scanning Line Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-800/20 to-transparent animate-scan"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent animate-scan"></div>
                       </div>
                       
                       {/* Name and Credentials */}
@@ -305,6 +412,25 @@ export default function Portfolio() {
                           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                           <span className="text-cyan-400 text-xs font-mono">AVAILABLE FOR OPPORTUNITIES</span>
                         </div>
+                        
+                        {/* Download Resume Button */}
+                        <a
+                          href="/Aryan_Mangrule_Resume.pdf"
+                          download="/Aryan_Mangrule_Resume.pdf"
+                          onMouseEnter={() => setCursorVariant('hover')}
+                          onMouseLeave={() => setCursorVariant('default')}
+                          className="group inline-flex items-center gap-3 px-6 py-3 mt-6 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105"
+                        >
+                          <svg 
+                            className="w-5 h-5 group-hover:animate-bounce" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                          </svg>
+                          <span>Download Resume</span>
+                        </a>
                       </div>
                       
                       {/* Corner Accents */}
@@ -344,22 +470,23 @@ export default function Portfolio() {
                   </span>
                 </h3>
                 <p className="text-xl text-gray-400 leading-relaxed">
-                  I'm Aryan Sanjay Mangrule, a B.Tech Computer Science Engineering student with a passion 
-                  for creating elegant solutions to complex problems. I specialize in building scalable web 
-                  applications and bringing creative ideas to life through code.
+                  I'm Aryan Sanjay Mangrule, a B.Tech Computer Science and Engineering student at Kolhapur Institute 
+                  of Technology (GPA: 8.58/10). I specialize in full-stack development with MERN stack, FastAPI, Flask, 
+                  and building AI-powered applications including medical triage systems and real-time chat platforms.
                 </p>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                  My approach combines technical excellence with user-centric design, ensuring every project 
-                  not only functions flawlessly but also delivers an exceptional user experience.
+                  Recently completed a React Developer internship at Vinayak IT Solution and led design teams at ACSES. 
+                  My projects span from Generative AI healthcare platforms to ML-based operator allocation systems. 
+                  Proficient in C++, Python, JavaScript, and modern web technologies.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { icon: <Zap />, label: 'Fast Performance', value: '99%' },
-                  { icon: <Cpu />, label: 'Code Quality', value: 'A+' },
-                  { icon: <Globe />, label: 'Projects', value: '50+' },
-                  { icon: <Sparkles />, label: 'Client Satisfaction', value: '100%' }
+                  { icon: <Zap />, label: 'GPA', value: '8.58' },
+                  { icon: <Cpu />, label: 'Major Projects', value: '5+' },
+                  { icon: <Globe />, label: 'Events Led', value: '10+' },
+                  { icon: <Sparkles />, label: 'Team Members', value: '5+' }
                 ].map((stat, i) => (
                   <div 
                     key={i}
@@ -544,25 +671,25 @@ export default function Portfolio() {
                 { 
                   icon: <Github size={28} />, 
                   label: 'GitHub',
-                  url: 'https://github.com/yourusername',
+                  url: 'https://github.com/aryanmangrule',
                   color: 'hover:bg-gray-700'
                 },
                 { 
                   icon: <Linkedin size={28} />, 
                   label: 'LinkedIn',
-                  url: 'https://linkedin.com/in/yourusername',
+                  url: 'https://www.linkedin.com/in/aryan-mangrule',
                   color: 'hover:bg-blue-600'
                 },
                 { 
                   icon: <Youtube size={28} />, 
                   label: 'YouTube',
-                  url: 'https://youtube.com/@yourusername',
+                  url: 'https://youtube.com/@aryanmangrule',
                   color: 'hover:bg-red-600'
                 },
                 { 
                   icon: <Mail size={28} />, 
                   label: 'Email',
-                  url: 'mailto:your.email@example.com',
+                  url: 'mailto:aryanmangrule@gmail.com',
                   color: 'hover:bg-cyan-600'
                 }
               ].map((social, i) => (
@@ -588,7 +715,7 @@ export default function Portfolio() {
             </div>
 
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:aryanmangrule@gmail.com"
               onMouseEnter={() => setCursorVariant('hover')}
               onMouseLeave={() => setCursorVariant('default')}
               className="inline-block px-12 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-xl font-bold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105"
@@ -601,7 +728,7 @@ export default function Portfolio() {
         {/* Footer */}
         <footer className="py-12 border-t border-cyan-500/20 text-center text-gray-500">
           <div className="max-w-6xl mx-auto px-8">
-            <p className="mb-4">© 2024 Aryan Sanjay Mangrule. Crafted with passion and code.</p>
+            <p className="mb-4">© 2026 | Aryan Sanjay Mangrule. Crafted with passion and code.</p>
             <p className="text-sm font-mono text-cyan-400">
               Built with React + Tailwind CSS + Love ❤️
             </p>
@@ -610,6 +737,45 @@ export default function Portfolio() {
       </div>
 
       <style jsx>{`
+
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 1.5s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         * {
@@ -738,5 +904,6 @@ export default function Portfolio() {
         }
       `}</style>
     </div>
+  </>
   );
 }
